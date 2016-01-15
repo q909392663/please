@@ -45,7 +45,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
                 //当前定位城市
                 $.cookie('VPIAO_MOBILE_CURRENTCITY', JSON.stringify(cityInfo), { expires: 7, path: '/' });
                 if (successFunc != undefined)
-                    successFunc(cityInfo);
+                    successFunc(JSON.stringify(cityInfo));
             });
         },
         function (error) {
@@ -74,7 +74,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             //默认城市
             $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(cityInfo), { expires: 1, path: '/' });
             if (errorFunc != undefined)
-                errorFunc(cityInfo);
+                errorFunc(JSON.stringify(cityInfo));
         }, { timeout: 5000, enableHighAccuracy: true });
     } else {
         errorInfo = '您的浏览器不支持获取地理位置信息';
@@ -86,14 +86,14 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             date:new Date().getTime()
         };
         if (errorFunc != undefined)
-            errorFunc(cityInfo);
+            errorFunc(JSON.stringify(cityInfo));
     }
 };
 
 var result = getLocation(successFunc,errorFunc);
 function successFunc(info){
     var CityInfoCookie = $.cookie('VPIAO_MOBILE_DEFAULTCITY');
-    alert(info);
+    alert(JSON.stringify(info));
     //x.innerHTIML="维度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
 }
 function errorFunc()
