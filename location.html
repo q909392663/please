@@ -33,7 +33,6 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             var gc = new BMap.Geocoder();
             gc.getLocation(point, function (rs) {
                 var addComp = rs.addressComponents;
-                alert(JSON.stringify(addComp));
                 var cityInfo= {
                     status:1,
                     id: '',
@@ -46,7 +45,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
                 //当前定位城市
                 $.cookie('VPIAO_MOBILE_CURRENTCITY', JSON.stringify(cityInfo), { expires: 7, path: '/' });
                 if (successFunc != undefined)
-                    successFunc(addComp);
+                    successFunc(cityInfo);
             });
         },
         function (error) {
@@ -75,19 +74,26 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             //默认城市
             $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(cityInfo), { expires: 1, path: '/' });
             if (errorFunc != undefined)
-                errorFunc(error);
+                errorFunc(cityInfo);
         }, { timeout: 5000, enableHighAccuracy: true });
     } else {
-        alert("你的浏览器不支持获取地理位置信息。");
+        errorInfo = '您的浏览器不支持获取地理位置信息';
+        cityInfo= {
+            status:error.code,
+            error:errorInfo,
+            id: '',
+            name: '广东省',
+            date:new Date().getTime()
+        };
         if (errorFunc != undefined)
-            errorFunc("你的浏览器不支持获取地理位置信息。");
+            errorFunc(cityInfo);
     }
 };
 
 var result = getLocation(successFunc,errorFunc);
-function successFunc(){
+function successFunc(info){
     var CityInfoCookie = $.cookie('VPIAO_MOBILE_DEFAULTCITY');
-    alert(CityInfoCookie);
+    alert(info);
     //x.innerHTIML="维度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
 }
 function errorFunc()
