@@ -24,7 +24,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
         //date: curDateTime()//获取当前时间方法
     };
     //默认城市
-    $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(defCity), { expires: 1, path: '/' });
+    $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(cityInfo), { expires: 1, path: '/' });
  
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -36,7 +36,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             gc.getLocation(point, function (rs) {
                 var addComp = rs.addressComponents;
                 alert(JSON.stringify(addComp));
-                var curCity = {
+                var cityInfo= {
                     status:1,
                     id: '',
                     province: addComp.province,
@@ -46,7 +46,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
                     date:new Date().getTime()
                 };
                 //当前定位城市
-                $.cookie('VPIAO_MOBILE_CURRENTCITY', JSON.stringify(curCity), { expires: 7, path: '/' });
+                $.cookie('VPIAO_MOBILE_CURRENTCITY', JSON.stringify(cityInfo), { expires: 7, path: '/' });
                 if (successFunc != undefined)
                     successFunc(addComp);
             });
@@ -66,14 +66,14 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
                     alert("未知错误。");
                     break;
             }
-            var curCity = {
+            var cityInfo= {
                 id: '000001',
                 name: '北京市',
                 date:new Date().getTime()
                 //date: curDateTime()
             };
             //默认城市
-            $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(curCity), { expires: 1, path: '/' });
+            $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(cityInfo), { expires: 1, path: '/' });
             if (errorFunc != undefined)
                 errorFunc(error);
         }, { timeout: 5000, enableHighAccuracy: true });
@@ -86,8 +86,8 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
 
 var result = getLocation(successFunc,errorFunc);
 function successFunc(){
-    var CityInfo = $.cookie('VPIAO_MOBILE_DEFAULTCITY');
-    alert(CityInfo);
+    var CityInfoCookie = $.cookie('VPIAO_MOBILE_DEFAULTCITY');
+    alert(CityInfoCookie);
     //x.innerHTIML="维度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
 }
 function errorFunc()
