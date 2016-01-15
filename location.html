@@ -93,7 +93,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
 var result = getLocation(successFunc,errorFunc);
 function successFunc(info){
     var CityInfoCookie = $.cookie('VPIAO_MOBILE_DEFAULTCITY');
-    alert(JSON.stringify(info));
+    alert(info);
     //x.innerHTIML="维度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
 }
 function errorFunc()
