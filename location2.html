@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<title>火眼大数据</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<body>
+        <p id="demo">点击这个按钮，获得您的坐标：</p>
+        <button onclick="getLocation()">试一下</button>
+<script>
+    var x=document.getElementById("demo");
+    function getLocation(){
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{
+            x.innerHTML="无法通过改浏览器获取用户地址";
+        }
+    }
+    function showPosition(position){
+        console.log(position);
+        x.innerHTML="维度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
+    }
+</script>
+</body>
+</html>
+
