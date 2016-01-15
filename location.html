@@ -35,7 +35,7 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             var gc = new BMap.Geocoder();
             gc.getLocation(point, function (rs) {
                 var addComp = rs.addressComponents;
-                alert(JSON.stringify(addComp);
+                alert(JSON.stringify(addComp));
                 var curCity = {
                     status:1,
                     id: '',
