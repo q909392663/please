@@ -16,7 +16,8 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
     var defCity = {
         id: '000001',
         name: '北京市',
-        date: curDateTime()//获取当前时间方法
+        date:new Date().getTime()
+        //date: curDateTime()//获取当前时间方法
     };
     //默认城市
     $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(defCity), { expires: 1, path: '/' });
@@ -33,7 +34,8 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
                 var curCity = {
                     id: '',
                     name: addComp.province,
-                    date: curDateTime()
+                    date:new Date().getTime()
+                    //date: curDateTime()
                 };
                 //当前定位城市
                 $.cookie('VPIAO_MOBILE_CURRENTCITY', JSON.stringify(curCity), { expires: 7, path: '/' });
@@ -60,7 +62,8 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             var curCity = {
                 id: '000001',
                 name: '北京市',
-                date: curDateTime()
+                date:new Date().getTime()
+                //date: curDateTime()
             };
             //默认城市
             $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(curCity), { expires: 1, path: '/' });
@@ -84,7 +87,8 @@ var showPosition = function (position) {
         var curCity = {
             id: '',
             name: addComp.province,
-            date: curDateTime()
+            date:new Date().getTime()
+            //date: curDateTime()
         };
         //当前定位城市
         $.cookie('VPIAO_MOBILE_CURRENTCITY', JSON.stringify(curCity), { expires: 7, path: '/' });
@@ -109,13 +113,13 @@ var showPositionError = function (error) {
     var curCity = {
         id: '000001',
         name: '北京市',
-        date: curDateTime()
+        date:new Date().getTime()
+        //date: curDateTime()
     };
     //默认城市
     $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(curCity), { expires: 1, path: '/' });
 };
 
-var getLocation = function (successFunc, errorFunc) { //successFunc获取定位成功回调函数，errorFunc获取定位失败回调
     var result = getLocation(successFunc,errorFunc);
     function successFunc(){
         alert('yes');
