@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <title>火眼大数据</title>
+    <title>获取地理位置</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -10,14 +10,12 @@
 
 <script>
 var getLocation = function (successFunc, errorFunc) { //successFunc获取定位成功回调函数，errorFunc获取定位失败回调
-
- 
     //首先设置默认城市
     var cityInfo= {
         status:0,
         id: '000001',
-        province: '北京市',
-        city:'',
+        province: '广东省',
+        city:'深圳市',
         district:'',
         street:'',
         date:new Date().getTime()
@@ -52,25 +50,27 @@ var getLocation = function (successFunc, errorFunc) { //successFunc获取定位�
             });
         },
         function (error) {
+            var errorInfo;
             switch (error.code) {
                 case 1:
-                    alert("位置服务被拒绝。");
+                    errorInfo = '位置服务被拒绝';
                     break;
                 case 2:
-                    alert("暂时获取不到位置信息。");
+                    errorInfo = '暂时获取不到位置信息';
                     break;
                 case 3:
-                    alert("获取位置信息超时。");
+                    errorInfo = '获取位置信息超时';
                     break;
                 default:
-                    alert("未知错误。");
+                    errorInfo = '未知错误';
                     break;
             }
-            var cityInfo= {
-                id: '000001',
-                name: '北京市',
+            cityInfo= {
+                status:error.code,
+                error:errorInfo,
+                id: '',
+                name: '广东省',
                 date:new Date().getTime()
-                //date: curDateTime()
             };
             //默认城市
             $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(cityInfo), { expires: 1, path: '/' });
