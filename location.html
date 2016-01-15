@@ -114,6 +114,17 @@ var showPositionError = function (error) {
     //默认城市
     $.cookie('VPIAO_MOBILE_DEFAULTCITY', JSON.stringify(curCity), { expires: 1, path: '/' });
 };
+
+var getLocation = function (successFunc, errorFunc) { //successFunc获取定位成功回调函数，errorFunc获取定位失败回调
+    var result = getLocation(successFunc,errorFunc);
+    function successFunc(){
+        alert('yes');
+                //x.innerHTIML="维度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
+    }
+    function errorFunc()
+    {
+        alert('no');
+    }
 </script>
 </body>
 </html>
